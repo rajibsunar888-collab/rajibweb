@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Projects | SoftNext</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* =====================================================
+   ROOT
+===================================================== */
+
+:root{
+
+    --black:#070709;
+    --black2:#0d0d10;
+
+    --white:#f5f5f5;
+    --muted:#96969e;
+
+    --gold:#f5c518;
+    --gold2:#ffd83d;
+
+    --border:#25252b;
+
+    --max:1180px;
+
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+html{
+    scroll-behavior:smooth;
+}
+
+
+body{
+
+    background:var(--black);
+
+    color:var(--white);
+
+    font-family:Inter,sans-serif;
+
+    overflow-x:hidden;
+
+}
+
+
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.background-grid{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-5;
+
+    background-image:
+
+        linear-gradient(
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        ),
+
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.025) 1px,
+            transparent 1px
+        );
+
+    background-size:70px 70px;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            black,
+            transparent 90%
+        );
+
+}
+
+
+.glow{
+
+    position:fixed;
+
+    width:450px;
+    height:450px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(245,197,24,.08),
+            transparent 70%
+        );
+
+    filter:blur(20px);
+
+    pointer-events:none;
+
+    z-index:-4;
+
+}
+
+
+.glow.one{
+
+    top:-250px;
+    left:-180px;
+
+}
+
+
+.glow.two{
+
+    bottom:-250px;
+    right:-180px;
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.navbar{
+
+    width:min(var(--max),92%);
+
+    margin:auto;
+
+    padding:25px 0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-weight:700;
+
+    font-size:20px;
+
+}
+
+
+.logo-mark{
+
+    width:43px;
+    height:43px;
+
+    border:1px solid
+        rgba(245,197,24,.35);
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:var(--gold);
+
+    background:
+        rgba(245,197,24,.04);
+
+}
+
+
+.logo span{
+
+    color:var(--gold);
+
+}
+
+
+.home{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:10px 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:8px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+.home:hover{
+
+    color:var(--gold);
+
+    border-color:var(--gold);
+
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+
+    width:min(var(--max),92%);
+
+    margin:auto;
+
+    padding:
+        110px 0
+        100px;
+
+}
+
+
+.hero-small{
+
+    font-family:"JetBrains Mono",monospace;
+
+    font-size:11px;
+
+    color:var(--gold);
+
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+
+.hero-small::before{
+
+    content:"";
+
+    width:35px;
+    height:1px;
+
+    background:var(--gold);
+
+}
+
+
+.hero h1{
+
+    margin-top:25px;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:
+        clamp(
+            4rem,
+            10vw,
+            8.5rem
+        );
+
+    line-height:.87;
+
+    letter-spacing:-.075em;
+
+    max-width:900px;
+
+}
+
+
+.hero h1 span{
+
+    color:transparent;
+
+    -webkit-text-stroke:
+        1px rgba(255,255,255,.35);
+
+}
+
+
+.hero-text{
+
+    max-width:600px;
+
+    margin-top:35px;
+
+    color:var(--muted);
+
+    font-size:16px;
+
+    line-height:1.8;
+
+}
+
+
+/* =====================================================
+   PROJECT HEADER
+===================================================== */
+
+.project-header{
+
+    width:min(var(--max),92%);
+
+    margin:auto;
+
+    padding-bottom:30px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+}
+
+
+.project-header-left span{
+
+    font-family:"JetBrains Mono",monospace;
+
+    color:var(--gold);
+
+    font-size:10px;
+
+    letter-spacing:.15em;
+
+}
+
+
+.project-header h2{
+
+    margin-top:8px;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:30px;
+
+}
+
+
+.project-count{
+
+    color:var(--muted);
+
+    font-family:"JetBrains Mono",monospace;
+
+    font-size:12px;
+
+}
+
+
+/* =====================================================
+   TIMELINE
+===================================================== */
+
+.timeline{
+
+    width:min(var(--max),92%);
+
+    margin:auto;
+
+    position:relative;
+
+    padding-bottom:100px;
+
+}
+
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    top:0;
+
+    bottom:0;
+
+    width:1px;
+
+    background:
+
+        linear-gradient(
+            to bottom,
+            transparent,
+            var(--gold),
+            var(--border),
+            transparent
+        );
+
+    transform:translateX(-50%);
+
+}
+
+
+/* =====================================================
+   PROJECT ITEM
+===================================================== */
+
+.project{
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 90px 1fr;
+
+    min-height:260px;
+
+    position:relative;
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:
+
+        opacity .8s ease,
+
+        transform .8s ease;
+
+}
+
+
+.project.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+
+/* =====================================================
+   LEFT SIDE
+===================================================== */
+
+.project-left{
+
+    padding:
+        30px 55px
+        30px 0;
+
+    text-align:right;
+
+}
+
+
+.project-right{
+
+    padding:
+        30px 0
+        30px 55px;
+
+}
+
+
+/* =====================================================
+   NUMBER
+===================================================== */
+
+.project-number{
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:80px;
+
+    line-height:1;
+
+    color:transparent;
+
+    -webkit-text-stroke:
+        1px rgba(245,197,24,.35);
+
+    transition:.4s;
+
+}
+
+
+.project:hover
+.project-number{
+
+    color:var(--gold);
+
+    -webkit-text-stroke:
+        1px var(--gold);
+
+    text-shadow:
+        0 0 35px
+        rgba(245,197,24,.25);
+
+}
+
+
+/* =====================================================
+   CENTER NODE
+===================================================== */
+
+.project-node{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding-top:42px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.node{
+
+    width:16px;
+    height:16px;
+
+    border-radius:50%;
+
+    background:var(--black);
+
+    border:
+        2px solid var(--gold);
+
+    box-shadow:
+        0 0 0 7px
+        rgba(245,197,24,.06),
+
+        0 0 25px
+        rgba(245,197,24,.15);
+
+    transition:.4s;
+
+}
+
+
+.project:hover .node{
+
+    background:var(--gold);
+
+    transform:scale(1.35);
+
+    box-shadow:
+        0 0 0 10px
+        rgba(245,197,24,.07),
+
+        0 0 35px
+        rgba(245,197,24,.4);
+
+}
+
+
+/* =====================================================
+   PROJECT CONTENT
+===================================================== */
+
+.category{
+
+    display:inline-block;
+
+    font-family:"JetBrains Mono",monospace;
+
+    font-size:10px;
+
+    letter-spacing:.1em;
+
+    color:var(--gold);
+
+    padding:5px 9px;
+
+    border:
+        1px solid
+        rgba(245,197,24,.25);
+
+    margin-bottom:15px;
+
+}
+
+
+.project h3{
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:29px;
+
+    line-height:1.1;
+
+    transition:.3s;
+
+}
+
+
+.project:hover h3{
+
+    color:var(--gold);
+
+}
+
+
+.project-description{
+
+    margin-top:13px;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    line-height:1.7;
+
+    max-width:440px;
+
+}
+
+
+/* =====================================================
+   GITHUB
+===================================================== */
+
+.github{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:22px;
+
+    padding:9px 14px;
+
+    border:1px solid var(--border);
+
+    border-radius:7px;
+
+    font-size:12px;
+
+    color:var(--white);
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+.github:hover{
+
+    background:var(--gold);
+
+    color:#111;
+
+    border-color:var(--gold);
+
+    transform:translateX(4px);
+
+}
+
+
+/* =====================================================
+   TECH LINE
+===================================================== */
+
+.tech-line{
+
+    margin-top:18px;
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+
+}
+
+
+.project-right .tech-line{
+
+    justify-content:flex-start;
+
+}
+
+
+.tech{
+
+    font-family:"JetBrains Mono",monospace;
+
+    color:#686870;
+
+    font-size:9px;
+
+    padding:4px 7px;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+
+/* =====================================================
+   ALTERNATE PROJECTS
+===================================================== */
+
+.project:nth-child(even)
+.project-left{
+
+    order:3;
+
+    text-align:left;
+
+    padding:
+        30px 0
+        30px 55px;
+
+}
+
+
+.project:nth-child(even)
+.project-right{
+
+    order:1;
+
+    padding:
+        30px 55px
+        30px 0;
+
+    text-align:right;
+
+}
+
+
+.project:nth-child(even)
+.project-right
+.project-description{
+
+    margin-left:auto;
+
+}
+
+
+.project:nth-child(even)
+.tech-line{
+
+    justify-content:flex-end;
+
+}
+
+
+.project:nth-child(even)
+.project-node{
+
+    order:2;
+
+}
+
+
+/* =====================================================
+   HOVER LINE
+===================================================== */
+
+.project-left::after,
+.project-right::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:52px;
+
+    width:0;
+
+    height:1px;
+
+    background:var(--gold);
+
+    transition:.5s;
+
+}
+
+
+.project-left::after{
+
+    right:calc(50% + 45px);
+
+}
+
+
+.project-right::after{
+
+    left:calc(50% + 45px);
+
+}
+
+
+.project:hover .project-left::after,
+.project:hover .project-right::after{
+
+    width:45px;
+
+}
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.cta{
+
+    width:min(var(--max),92%);
+
+    margin:
+        0 auto
+        100px;
+
+    padding:70px 0;
+
+    border-top:1px solid var(--border);
+
+    border-bottom:1px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:30px;
+
+}
+
+
+.cta h2{
+
+    font-family:"Space Grotesk",sans-serif;
+
+    font-size:
+        clamp(
+            2.3rem,
+            5vw,
+            4rem
+        );
+
+    letter-spacing:-.05em;
+
+}
+
+
+.cta p{
+
+    margin-top:10px;
+
+    color:var(--muted);
+
+}
+
+
+.cta-button{
+
+    flex-shrink:0;
+
+    padding:14px 22px;
+
+    background:var(--gold);
+
+    color:#111;
+
+    border-radius:7px;
+
+    font-weight:700;
+
+    font-size:13px;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+
+.cta-button:hover{
+
+    background:var(--gold2);
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(245,197,24,.15);
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+
+    width:min(var(--max),92%);
+
+    margin:auto;
+
+    padding:
+        30px 0
+        50px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:#606068;
+
+    font-size:12px;
+
+}
+
+
+footer span{
+
+    color:var(--gold);
+
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:750px){
+
+    .navbar{
+
+        padding-top:18px;
+
+    }
+
+
+    .hero{
+
+        padding:
+            80px 0
+            70px;
+
+    }
+
+
+    .hero h1{
+
+        font-size:4.2rem;
+
+    }
+
+
+    .project-header{
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+
+    .timeline::before{
+
+        left:12px;
+
+        transform:none;
+
+    }
+
+
+    .project{
+
+        display:grid;
+
+        grid-template-columns:45px 1fr;
+
+        min-height:auto;
+
+        margin-bottom:45px;
+
+    }
+
+
+    .project-node{
+
+        grid-column:1;
+
+        grid-row:1;
+
+        padding-top:37px;
+
+        justify-content:flex-start;
+
+    }
+
+
+    .project-left,
+    .project:nth-child(even) .project-left{
+
+        grid-column:2;
+
+        grid-row:1;
+
+        order:2;
+
+        padding:
+            20px 0
+            10px 20px;
+
+        text-align:left;
+
+    }
+
+
+    .project-right,
+    .project:nth-child(even) .project-right{
+
+        grid-column:2;
+
+        grid-row:2;
+
+        order:3;
+
+        padding:
+            0 0
+            20px 20px;
+
+        text-align:left;
+
+    }
+
+
+    .project-number{
+
+        font-size:55px;
+
+    }
+
+
+    .project:nth-child(even)
+    .project-description{
+
+        margin-left:0;
+
+    }
+
+
+    .tech-line,
+    .project:nth-child(even)
+    .tech-line{
+
+        justify-content:flex-start;
+
+    }
+
+
+    .project-left::after,
+    .project-right::after{
+
+        display:none;
+
+    }
+
+
+    .cta{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+
+    footer{
+
+        flex-direction:column;
+
+        gap:8px;
+
+        text-align:center;
+
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .hero h1{
+
+        font-size:3.4rem;
+
+    }
+
+    .project h3{
+
+        font-size:24px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="background-grid"></div>
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<nav class="navbar">
+
+    <a href="{% url 'home' %}" class="logo">
+
+        <div class="logo-mark">
+
+            SN
+
+        </div>
+
+        Soft<span>Next</span>
+
+    </a>
+
+
+    <a href="{% url 'home' %}" class="home">
+
+        ← Back Home
+
+    </a>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero">
+
+    <div class="hero-small">
+
+        OUR WORK
+
+    </div>
+
+
+    <h1>
+
+        Ideas.
+
+        <br>
+
+        <span>Built.</span>
+
+    </h1>
+
+
+    <p class="hero-text">
+
+        A collection of projects developed by me and my
+        team — from applications and financial tools to
+        games, AI experiments and tracking systems.
+
+    </p>
+
+</section>
+
+
+<!-- =====================================================
+     PROJECT HEADER
+===================================================== -->
+
+<section class="project-header">
+
+    <div class="project-header-left">
+
+        <span>
+            01 — SELECTED PROJECTS
+        </span>
+
+        <h2>
+            Development Archive
+        </h2>
+
+    </div>
+
+
+    <div class="project-count">
+
+        {{ project_total }} PROJECTS
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     PROJECT TIMELINE
+===================================================== -->
+
+<section class="timeline">
+
+
+    {% for p in projects %}
+    <article class="project">
+        <div class="project-left">
+            <div class="project-number">{{ forloop.counter|stringformat:"02d" }}</div>
+        </div>
+        <div class="project-node"><div class="node"></div></div>
+        <div class="project-right">
+            <span class="category">{{ p.category }}</span>
+            <h3>{{ p.title }}</h3>
+            <p class="project-description">{{ p.description }}</p>
+            <div class="tech-line">{% for t in p.tags %}<span class="tech">{{ t|upper }}</span>{% endfor %}</div>
+            {% if p.repo_url %}<a href="{{ p.repo_url }}" target="_blank" rel="noopener" class="github">View Repository →</a>{% endif %}
+            {% if p.live_url %}<a href="{{ p.live_url }}" target="_blank" rel="noopener" class="github">Live Demo →</a>{% endif %}
+        </div>
+    </article>
+    {% endfor %}
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+    <div>
+
+        <h2>
+            Have an idea?
+            <br>
+            <span style="color:var(--gold)">
+                Let's build it.
+            </span>
+        </h2>
+
+        <p>
+            Let's create something meaningful together.
+        </p>
+
+    </div>
+
+
+    <a
+        href="{% url 'home' %}#contact"
+        class="cta-button"
+    >
+
+        Start a Project →
+
+    </a>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <div>
+        © 2026 <span>SoftNext</span>
+    </div>
+
+    <div>
+        Built by <span>Rajib & Team</span>
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+
+const projects =
+document.querySelectorAll(".project");
+
+
+const reveal =
+new IntersectionObserver(
+
+    entries => {
+
+        entries.forEach(
+            entry => {
+
+                if(
+                    entry.isIntersecting
+                ){
+
+                    entry.target.classList.add(
+                        "show"
+                    );
+
+                    reveal.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            }
+        );
+
+    },
+
+    {
+        threshold:.12
+    }
+
+);
+
+
+projects.forEach(
+    project => {
+
+        reveal.observe(
+            project
+        );
+
+    }
+
+);
+
+
+/* =====================================================
+   MOUSE GLOW EFFECT
+===================================================== */
+
+document.addEventListener(
+    "mousemove",
+    event => {
+
+        const x =
+            event.clientX;
+
+        const y =
+            event.clientY;
+
+
+        document.querySelectorAll(
+            ".project"
+        ).forEach(
+            project => {
+
+                const rect =
+                    project.getBoundingClientRect();
+
+
+                if(
+                    y >= rect.top &&
+                    y <= rect.bottom
+                ){
+
+                    project.style.setProperty(
+                        "--mouse-x",
+                        `${x - rect.left}px`
+                    );
+
+                }
+
+            }
+        );
+
+    }
+);
+
+
+/* =====================================================
+   PROJECT HOVER
+===================================================== */
+
+projects.forEach(
+    project => {
+
+        project.addEventListener(
+            "mouseenter",
+            () => {
+
+                project.style.zIndex = "5";
+
+            }
+        );
+
+
+        project.addEventListener(
+            "mouseleave",
+            () => {
+
+                project.style.zIndex = "1";
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>

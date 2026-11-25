@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ profile.name }} — Developer · Designer · Photographer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/extras.css' %}">
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+
+<!-- NAV -->
+<header class="site-header" id="siteHeader">
+  <div class="nav-wrap">
+    <a href="#home" class="logo"> 
+
+      
+      <span class="logo-mark">RS</span>
+      <span class="logo-name">Rajib Sunar</span>
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="{% url 'about' %}" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="{% url 'blog' %}" class="nav-link">Blog</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <a href="{% url 'download_cv' %}" class="btn btn-outline cv-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg>
+      Download CV
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-copy" data-reveal>
+      <p class="hero-wave">👋 Hello, I'm</p>
+      <h1 class="hero-title">Rajib <span class="accent">Sunar</span></h1>
+      <p class="hero-roles">
+        <span class="role-rotator">
+          <span class="role active">Python Developer</span>
+          <span class="role">Graphic Designer</span>
+          <span class="role">Web Developer</span>
+          <span class="role">Content Creator</span>
+        </span>
+      </p>
+      <p class="hero-desc">I build modern websites, creative digital experiences, and technology-focused solutions — then shoot and craft the visuals to go with them.</p>
+
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-solid">View My Work
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+        </a>
+        <a href="#contact" class="btn btn-line">Contact Me
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+        </a>
+      </div>
+
+      <div class="hero-social">
+        <span class="social-label">Find me on</span>
+        <div class="social-icons">
+          {% if profile.facebook_url %}<a href="{{ profile.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.4h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg></a>{% endif %}
+          {% if profile.instagram_url %}<a href="{{ profile.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>{% endif %}
+          {% if profile.github_url %}<a href="{{ profile.github_url }}" target="_blank" rel="noopener" aria-label="GitHub"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.69 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg></a>{% endif %}
+          {% if profile.linkedin_url %}<a href="{{ profile.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.41-2.08 2.86V21H9z"/></svg></a>{% endif %}
+          {% if profile.youtube_url %}<a href="{{ profile.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M22.5 6.5s-.2-1.6-.9-2.3c-.8-.9-1.7-.9-2.1-1C16.5 3 12 3 12 3h0s-4.5 0-7.5.2c-.4 0-1.3.1-2.1 1-.7.7-.9 2.3-.9 2.3S1.3 8.4 1.3 10.2v1.5c0 1.9.2 3.7.2 3.7s.2 1.6.9 2.3c.8.9 1.9.9 2.4 1 1.7.2 7.2.2 7.2.2s4.5 0 7.5-.2c.4 0 1.3-.1 2.1-1 .7-.7.9-2.3.9-2.3s.2-1.9.2-3.7v-1.5c0-1.9-.2-3.7-.2-3.7zM9.7 14.4V8.6l5.6 2.9-5.6 2.9z"/></svg></a>{% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-photo" data-reveal>
+      <div class="photo-frame">
+        <img src="{% static 'img/raj.png' %}" alt="Portrait of Rajib Sunar">
+      </div>
+    </div>
+  </div>
+
+  <!-- quick nav cards -->
+  <div class="quick-cards">
+    <a href="{% url 'about' %}" class="q-card" data-reveal>
+      <span class="q-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </span>
+      <h3>About Me</h3>
+      <p>Get to know more about me, my background, and my interests.</p>
+      <span class="q-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+    </a>
+    <a href="{% url 'skills' %}" class="q-card" data-reveal>
+      <span class="q-icon">&lt;/&gt;</span>
+      <h3>Skills</h3>
+      <p>Technologies and tools I work with to bring ideas to life.</p>
+      <span class="q-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+    </a>
+    <a href="{% url 'projects' %}" class="q-card" data-reveal>
+      <span class="q-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
+      </span>
+      <h3>Projects</h3>
+      <p>Explore my projects and see how I solve problems with code.</p>
+      <span class="q-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+    </a>
+    <a href="{% url 'services' %}" class="q-card" data-reveal>
+      <span class="q-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4.5 16.5c-1.5 1.5-2 5-2 5s3.5-.5 5-2c.8-.8 1-2 .2-2.8-.8-.8-2-.6-2.8.2z"/><path d="M12 15l7-7c1-1 2-3 2-5s-2-1-5 0-4 1-5 2l-7 7 3 3 5-5"/><path d="M9 12L6 9"/></svg>
+      </span>
+      <h3>Services</h3>
+      <p>Services I offer to help bring your ideas to life.</p>
+      <span class="q-link">Learn more <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg></span>
+    </a>
+  </div>
+  <div class="scroll-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="section-inner about-grid">
+    <div class="about-photo" data-reveal>
+      <img src="{% static 'img/1.jpg' %}" alt="Rajib Sunar working">
+      <span class="tag-badge">1+ yrs<br> Building Project, Remote worker</span>
+    </div>
+    <div class="about-copy" data-reveal>
+      <p class="eyebrow">About Me</p>
+      <h2>Turning ideas into things people can click, read, and remember.</h2>
+      <p class="body-text">I'm Rajib — a developer and visual creator who likes projects that sit right at the edge of code and craft. Most days that means shipping clean, fast websites; some days it means being behind a camera, framing a shot that tells its own story.</p>
+      <p class="body-text">I care about the details most people skip: load times, spacing, the way a hover feels. That habit carries over into everything else I make — presentations, videos, photos, and the odd side project that never quite ships on schedule.</p>
+      <div class="about-stats">
+        <div><strong>{{ profile.stat_projects }}</strong><span>Projects shipped</span></div>
+        <div><strong>{{ profile.stat_clients }}</strong><span>Happy clients</span></div>
+        <div><strong>{{ profile.stat_disciplines }}</strong><span>Disciplines</span></div>
+      </div>
+      <a href="#contact" class="btn btn-solid">Let's Talk
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0l-6-6m6 6l-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section skills" id="skills">
+  <div class="section-inner">
+    <p class="eyebrow center">Skills</p>
+    <h2 class="center">Tools I reach for</h2>
+    <p class="section-sub center">A working kit built for building, designing, and shooting — not a badge collection.</p>
+
+    <div class="skills-grid">
+      {% for skill in skills %}
+      <div class="skill-card" data-reveal><span class="skill-name">{{ skill.name }}</span><div class="bar"><i style="--val:{{ skill.level }}%"></i></div></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section projects" id="projects">
+  <div class="section-inner">
+    <p class="eyebrow center">Projects</p>
+    <h2 class="center">Things I've built</h2>
+    <p class="section-sub center">A mix of client work, personal builds, and experiments that made it past the prototype stage.</p>
+
+    <div class="project-grid">
+      {% for p in projects %}
+      <article class="project-card" data-reveal>
+        <div class="project-thumb thumb-{{ forloop.counter }}"></div>
+        <div class="project-body">
+          <span class="project-tag">{{ p.category }}</span>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.description }}</p>
+          <div class="project-stack">{% for t in p.tags %}<span>{{ t }}</span>{% endfor %}</div>
+          {% if p.repo_url %}<a href="{{ p.repo_url }}" target="_blank" rel="noopener" class="q-link" style="margin-top:14px">View repository &rarr;</a>{% endif %}
+        </div>
+      </article>
+      {% empty %}
+      <p class="section-sub center" style="grid-column:1/-1">Projects coming soon.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="section-inner">
+    <p class="eyebrow center">Services</p>
+    <h2 class="center">How I can help</h2>
+    <p class="section-sub center">Pick a lane, or combine a few — most projects end up needing more than one.</p>
+
+    <div class="services-grid">
+      {% for sv in services %}
+      <div class="service-card" data-reveal>
+        <span class="service-num">{{ forloop.counter|stringformat:"02d" }}</span>
+        <h3>{{ sv.title }}</h3>
+        <p>{{ sv.description }}</p>
+        <a href="{% url 'quote' %}?service={{ sv.title|urlencode }}" class="q-link" style="margin-top:14px">Get a quote &rarr;</a>
+      </div>
+      {% endfor %}
+    </div>
+    <p class="section-cta"><a class="btn btn-solid" href="{% url 'quote' %}">Request a quote</a></p>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section gallery" id="gallery">
+  <div class="section-inner">
+    <p class="eyebrow center">Gallery</p>
+    <h2 class="center">A few frames</h2>
+    <p class="section-sub center">Snapshots from shoots and projects along the way.</p>
+
+    <div class="gallery-grid">
+      {% for g in gallery %}
+      <div class="g-item g-{{ forloop.counter }}" data-reveal><img src="{{ g.url }}" alt="{{ g.title|default:'Gallery photo' }}" loading="lazy"></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% if videos %}
+<!-- LATEST VIDEOS -->
+<section class="section videos" id="videos">
+  <div class="section-inner">
+    <p class="eyebrow center">YouTube</p>
+    <h2 class="center">Latest videos</h2>
+    <p class="section-sub center">Fresh tutorials and tech content from my channel.</p>
+    <div class="yt-grid">
+      {% for v in videos %}
+      <a class="yt-card" href="{{ v.url }}" target="_blank" rel="noopener" data-reveal>
+        <div class="yt-thumb"><img src="{{ v.thumb }}" alt="" loading="lazy"></div>
+        <div class="yt-info"><h3>{{ v.title }}</h3><span>{{ v.published }}</span></div>
+      </a>
+      {% endfor %}
+    </div>
+    {% if profile.youtube_url %}<p class="section-cta"><a class="btn btn-outline" href="{{ profile.youtube_url }}" target="_blank" rel="noopener">Visit my channel</a></p>{% endif %}
+  </div>
+</section>
+{% endif %}
+
+{% if posts %}
+<!-- BLOG PREVIEW -->
+<section class="section blog-preview" id="blog-preview">
+  <div class="section-inner">
+    <p class="eyebrow center">Blog</p>
+    <h2 class="center">From the blog</h2>
+    <p class="section-sub center">Tutorials, project write-ups and notes.</p>
+    <div class="post-grid">{% for post in posts %}{% include "partials/post_card.html" %}{% endfor %}</div>
+    <p class="section-cta"><a class="btn btn-outline" href="{% url 'blog' %}">All posts</a></p>
+  </div>
+</section>
+{% endif %}
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="testimonials">
+  <div class="section-inner">
+    <p class="eyebrow center">Testimonials</p>
+    <h2 class="center">What people say</h2>
+    {% if testimonials %}
+    <div class="t-grid">
+      {% for t in testimonials %}
+      <figure class="t-card" data-reveal>
+        <div class="stars" aria-label="{{ t.rating }} out of 5">{{ t.stars }}</div>
+        <p>&ldquo;{{ t.text }}&rdquo;</p>
+        <figcaption class="t-who"><strong>{{ t.name }}</strong>{% if t.role %}<span>{{ t.role }}</span>{% endif %}</figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="section-sub center">Reviews will appear here once clients share their experience.</p>
+    {% endif %}
+
+    <details class="review-box">
+      <summary>Worked with me? Leave a review</summary>
+      <div class="form-card">
+        <form class="modern-contact-form gold-form" method="post" action="{% url 'testimonial_submit' %}" data-ajax
+              data-success="✓ Thank you! Your review was sent and will appear after approval." novalidate>
+          {% csrf_token %}
+          {% include "partials/honeypot.html" %}
+          <div class="modern-form-row">
+            <div class="modern-input-group"><label for="tName">Your name</label><input id="tName" name="name" type="text" required></div>
+            <div class="modern-input-group"><label for="tRole">Role / company (optional)</label><input id="tRole" name="role" type="text"></div>
+          </div>
+          <div class="modern-input-group"><label for="tRating">Rating</label>
+            <select id="tRating" name="rating"><option value="5">&#9733;&#9733;&#9733;&#9733;&#9733; - Excellent</option><option value="4">&#9733;&#9733;&#9733;&#9733; - Very good</option><option value="3">&#9733;&#9733;&#9733; - Good</option><option value="2">&#9733;&#9733; - Fair</option><option value="1">&#9733; - Poor</option></select></div>
+          <div class="modern-input-group"><label for="tText">Your review</label><textarea id="tText" name="text" rows="4" required></textarea></div>
+          {% include "partials/turnstile.html" %}
+          <button type="submit" class="btn btn-solid full"><span class="btn-label">Submit review</span></button>
+          <p class="form-msg" role="status"></p>
+        </form>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section newsletter" id="newsletter">
+  <div class="section-inner newsletter-band">
+    <p class="eyebrow center">Newsletter</p>
+    <h2 class="center">Get new tutorials in your inbox</h2>
+    <p class="section-sub center">No spam. Just new videos, posts and projects.</p>
+    <form class="news-form" method="post" action="{% url 'subscribe' %}" data-ajax data-success="✓ You are subscribed. Thank you!" novalidate>
+      {% csrf_token %}
+      {% include "partials/honeypot.html" %}
+      <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+      <button type="submit" class="btn btn-solid"><span class="btn-label">Subscribe</span></button>
+      <p class="form-msg" role="status" style="flex-basis:100%"></p>
+    </form>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact contact-premium" id="contact">
+
+  <div class="contact-glow contact-glow-1"></div>
+  <div class="contact-glow contact-glow-2"></div>
+
+  <div class="section-inner">
+
+    <!-- Heading -->
+    <div class="contact-heading" data-reveal>
+      <p class="eyebrow">CONTACT</p>
+
+      <h2>
+        Let's create something
+        <span class="contact-accent">meaningful.</span>
+      </h2>
+
+      <p>
+        Have a project, an idea, or an opportunity?
+        Tell me about it and let's turn your idea into something real.
+      </p>
+    </div>
+
+    <div class="contact-premium-grid">
+
+      <!-- PROFILE SIDE -->
+      <div class="contact-profile" data-reveal>
+
+        <div class="profile-image-wrap">
+          <div class="profile-ring"></div>
+          <img src="{% static 'img/raj.png' %}" alt="Rajib Sunar" class="contact-profile-image">
+          <div class="verified-badge">
+            <span class="verified-check">✓</span>
+            <span>Verified</span>
+          </div>
+        </div>
+
+        <div class="profile-info">
+          <p class="profile-label">HELLO, I'M</p>
+          <h3>Rajib Sunar</h3>
+          <p class="profile-role">Python Developer · Web Developer · Content Creator</p>
+          {% if profile.available_for_work %}<div class="availability">
+            <span class="availability-dot"></span>
+            <span>Available for new projects</span>
+          </div>{% endif %}
+        </div>
+
+        <!-- Contact details -->
+        <div class="contact-details">
+
+          <a href="mailto:{{ profile.email }}" class="contact-detail-card">
+            <span class="detail-icon">✉</span>
+            <span>
+              <small>Email</small>
+              <strong>{{ profile.email }}</strong>
+            </span>
+            <span class="detail-arrow">↗</span>
+          </a>
+
+          <a href="tel:{{ profile.phone_href }}" class="contact-detail-card">
+            <span class="detail-icon">☎</span>
+            <span>
+              <small>Phone</small>
+              <strong>{{ profile.phone }}</strong>
+            </span>
+            <span class="detail-arrow">↗</span>
+          </a>
+
+          <div class="contact-detail-card">
+            <span class="detail-icon">⌖</span>
+            <span>
+              <small>Location</small>
+              <strong>{{ profile.location }}</strong>
+            </span>
+          </div>
+
+        </div>
+
+        <!-- Social links -->
+        <div class="contact-social">
+          <span>FOLLOW ME</span>
+          <div class="contact-social-links">
+            {% if profile.github_url %}<a href="{{ profile.github_url }}" target="_blank" rel="noopener" aria-label="GitHub">GH</a>{% endif %}
+            {% if profile.instagram_url %}<a href="{{ profile.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">IG</a>{% endif %}
+            {% if profile.youtube_url %}<a href="{{ profile.youtube_url }}" target="_blank" rel="noopener" aria-label="YouTube">YT</a>{% endif %}
+            {% if profile.facebook_url %}<a href="{{ profile.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">FB</a>{% endif %}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-form-box" data-reveal>
+
+        <div class="form-top">
+          <div>
+            <span class="form-number">01</span>
+            <h3>Start a conversation</h3>
+            <p>Fill in the details below and I'll get back to you.</p>
+          </div>
+          <div class="form-status">
+            <span></span>
+            Secure
+          </div>
+        </div>
+
+        <form id="contactForm" class="modern-contact-form" method="post" action="{% url 'contact' %}" novalidate>
+          {% csrf_token %}
+          <div style="position:absolute;left:-9999px;" aria-hidden="true"><label>Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+          <div class="modern-form-row">
+            <div class="modern-input-group">
+              <label for="contactName">Your name</label>
+              <input type="text" id="contactName" name="name" placeholder="John Doe" required>
+            </div>
+
+            <div class="modern-input-group">
+              <label for="contactEmail">Email address</label>
+              <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+
+          <div class="modern-input-group">
+            <label for="contactSubject">Project / Subject</label>
+            <input type="text" id="contactSubject" name="subject" placeholder="Website, Python project, collaboration..." required>
+          </div>
+
+          <div class="modern-input-group">
+            <label for="contactMessage">Tell me about your idea</label>
+            <textarea id="contactMessage" name="message" rows="6" placeholder="Write a few details about your project..." required></textarea>
+          </div>
+
+          {% if turnstile_site_key %}
+          <!-- Real human verification (Cloudflare Turnstile) -->
+          <div class="verification-box" id="verificationBox">
+            <div class="cf-turnstile" data-sitekey="{{ turnstile_site_key }}" data-theme="dark"></div>
+          </div>
+          {% endif %}
+
+          <!-- Send button -->
+          <button type="submit" class="contact-submit" id="contactSubmit">
+            <span>Send message</span>
+            <span class="submit-arrow">→</span>
+          </button>
+
+          <!-- Message -->
+          <div class="contact-success" id="contactSuccess" role="status"></div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="contact-bottom" data-reveal>
+      <span>Have a bigger project?</span>
+      <a href="mailto:{{ profile.email }}">
+        Let's talk directly
+        <span>↗</span>
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- BACK TO TOP -->
+<button class="to-top" id="toTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5m0 0l-6 6m6-6l6 6"/></svg>
+</button>
+
+<script>window.PORTFOLIO = {contactUrl: "{% url 'contact' %}", turnstile: {% if turnstile_site_key %}true{% else %}false{% endif %}};</script>
+{% if turnstile_site_key %}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{% endif %}
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

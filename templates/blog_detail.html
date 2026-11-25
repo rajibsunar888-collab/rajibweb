@@ -1,0 +1,26 @@
+{% extends "page_base.html" %}
+{% block title %}{{ post.title }} - {{ profile.name }}{% endblock %}
+{% block meta %}
+<meta name="description" content="{{ post.excerpt }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ post.title }}">
+<meta property="og:description" content="{{ post.excerpt }}">
+{% if post.cover %}<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ post.cover.url }}">{% endif %}
+{% endblock %}
+{% block content %}
+<article class="section-inner page-section article">
+  <a href="{% url 'blog' %}" class="back-link">&larr; All posts</a>
+  <span class="post-meta">{{ post.created|date:"F j, Y" }} &middot; {{ post.read_minutes }} min read</span>
+  <h1 class="article-title">{{ post.title }}</h1>
+  {% if post.cover %}<img class="article-cover" src="{{ post.cover.url }}" alt="">{% endif %}
+  <div class="prose">{{ post.body|linebreaks }}</div>
+  {% if post.video_url %}<p><a class="btn btn-outline" href="{{ post.video_url }}" target="_blank" rel="noopener">Watch the video on YouTube</a></p>{% endif %}
+</article>
+
+{% if others %}
+<section class="section-inner page-section">
+  <h2 class="center">More posts</h2>
+  <div class="post-grid">{% for post in others %}{% include "partials/post_card.html" %}{% endfor %}</div>
+</section>
+{% endif %}
+{% endblock %}

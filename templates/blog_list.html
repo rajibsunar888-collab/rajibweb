@@ -1,0 +1,19 @@
+{% extends "page_base.html" %}
+{% load static %}
+{% block title %}Blog - {{ profile.name }}{% endblock %}
+{% block meta %}<meta name="description" content="Tech tutorials, project write-ups and tips from {{ profile.name }}.">{% endblock %}
+{% block content %}
+<section class="section-inner page-section">
+  <p class="eyebrow center">Blog</p>
+  <h2 class="center">Tutorials &amp; notes</h2>
+  <p class="section-sub center">Tech tutorials, project write-ups and things I learn along the way.</p>
+
+  <div class="post-grid">
+    {% for post in posts %}
+    {% include "partials/post_card.html" %}
+    {% empty %}
+    <p class="section-sub center" style="grid-column:1/-1">No posts yet - check back soon.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<style>
+  .an-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:26px}
+  .an-card{border:1px solid var(--border-color);border-radius:8px;padding:14px 16px;background:var(--body-bg)}
+  .an-card b{display:block;font-size:1.7rem;color:var(--primary)}
+  .an-card span{font-size:.8rem;color:var(--body-quiet-color)}
+  .an-bars{display:flex;align-items:flex-end;gap:6px;height:140px;margin:10px 0 28px}
+  .an-bar{flex:1;background:var(--primary);border-radius:3px 3px 0 0;min-height:2px;position:relative}
+  .an-bar i{position:absolute;bottom:100%;left:50%;transform:translateX(-50%);font-size:.7rem;font-style:normal;color:var(--body-quiet-color)}
+  .an-days{display:flex;gap:6px;font-size:.65rem;color:var(--body-quiet-color)}
+  .an-days span{flex:1;text-align:center}
+  .an-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:800px){.an-cols{grid-template-columns:1fr}}
+</style>
+
+<div class="an-grid">
+  <div class="an-card"><b>{{ views_today }}</b><span>Page views today</span></div>
+  <div class="an-card"><b>{{ views_7 }}</b><span>Last 7 days</span></div>
+  <div class="an-card"><b>{{ views_30 }}</b><span>Last 30 days</span></div>
+  <div class="an-card"><b>{{ cv_downloads }}</b><span>CV downloads</span></div>
+  <div class="an-card"><b>{{ messages_unread }}</b><span>Unread messages ({{ messages_total }} total)</span></div>
+  <div class="an-card"><b>{{ quotes_new }}</b><span>New quote requests ({{ quotes_total }} total)</span></div>
+  <div class="an-card"><b>{{ reviews_pending }}</b><span>Reviews waiting approval</span></div>
+  <div class="an-card"><b>{{ subscribers }}</b><span>Newsletter subscribers</span></div>
+</div>
+
+<h2>Views, last 14 days</h2>
+<div class="an-bars">{% for d in series %}<div class="an-bar" style="height:{{ d.pct }}%" title="{{ d.day|date:'M j' }}: {{ d.n }}">{% if d.n %}<i>{{ d.n }}</i>{% endif %}</div>{% endfor %}</div>
+<div class="an-days">{% for d in series %}<span>{{ d.day|date:"j" }}</span>{% endfor %}</div>
+
+<div class="an-cols">
+  <div>
+    <h2>Top pages (30 days)</h2>
+    <table style="width:100%"><thead><tr><th>Page</th><th>Views</th></tr></thead><tbody>
+      {% for p in top_pages %}<tr><td>{{ p.path }}</td><td>{{ p.n }}</td></tr>{% empty %}<tr><td colspan="2">No data yet.</td></tr>{% endfor %}
+    </tbody></table>
+  </div>
+  <div>
+    <h2>Most read posts</h2>
+    <table style="width:100%"><thead><tr><th>Post</th><th>Views</th></tr></thead><tbody>
+      {% for p in top_posts %}<tr><td>{{ p.title }}</td><td>{{ p.views }}</td></tr>{% empty %}<tr><td colspan="2">No posts yet.</td></tr>{% endfor %}
+    </tbody></table>
+  </div>
+</div>
+<p style="margin-top:24px;color:var(--body-quiet-color);font-size:.8rem">Counts exclude staff, bots and admin pages. No IP addresses are stored for page views.</p>
+{% endblock %}

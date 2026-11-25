@@ -1,0 +1,9 @@
+<a href="{{ post.get_absolute_url }}" class="post-card">
+  <div class="post-cover">{% if post.cover %}<img src="{{ post.cover.url }}" alt="" loading="lazy">{% else %}<span>{{ post.title|slice:":1" }}</span>{% endif %}</div>
+  <div class="post-body">
+    <span class="post-meta">{{ post.created|date:"M j, Y" }} &middot; {{ post.read_minutes }} min read</span>
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.excerpt }}</p>
+    <span class="q-link">Read more &rarr;</span>
+  </div>
+</a>

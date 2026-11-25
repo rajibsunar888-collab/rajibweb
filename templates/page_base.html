@@ -1,0 +1,51 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}{{ profile.name }}{% endblock %}</title>
+{% block meta %}<meta name="description" content="Portfolio of {{ profile.name }} - Python developer, web developer, designer and content creator.">{% endblock %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/extras.css' %}">
+</head>
+<body>
+<div class="noise-overlay"></div>
+
+<header class="site-header scrolled" id="siteHeader">
+  <div class="nav-wrap">
+    <a href="{% url 'home' %}" class="logo">
+      <span class="logo-mark">RS</span>
+      <span class="logo-name">{{ profile.name }}</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <a href="{% url 'home' %}" class="nav-link">Home</a>
+      <a href="{% url 'about' %}" class="nav-link">About</a>
+      <a href="{% url 'projects' %}" class="nav-link">Projects</a>
+      <a href="{% url 'services' %}" class="nav-link">Services</a>
+      <a href="{% url 'blog' %}" class="nav-link {% if active == 'blog' %}active{% endif %}">Blog</a>
+      <a href="{% url 'quote' %}" class="nav-link {% if active == 'quote' %}active{% endif %}">Get a Quote</a>
+      <a href="{% url 'home' %}#contact" class="nav-link">Contact</a>
+    </nav>
+    <a href="{% url 'download_cv' %}" class="btn btn-outline cv-btn">Download CV</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main class="page-main">
+{% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="section-inner footer-inner">
+    <p>&copy; {% now "Y" %} {{ profile.name }}. All rights reserved.</p>
+    <p><a href="{% url 'home' %}">Home</a> &middot; <a href="{% url 'blog' %}">Blog</a> &middot; <a href="{% url 'quote' %}">Get a quote</a></p>
+  </div>
+</footer>
+
+<script>window.PORTFOLIO = {};</script>
+{% if turnstile_site_key %}<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>{% endif %}
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+{% extends "admin/index.html" %}
+{% block content %}
+<p style="margin:0 0 18px"><a class="button" href="{% url 'analytics' %}">View site analytics</a></p>
+{{ block.super }}
+{% endblock %}

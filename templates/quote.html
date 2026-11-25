@@ -1,0 +1,40 @@
+{% extends "page_base.html" %}
+{% block title %}Get a Quote - {{ profile.name }}{% endblock %}
+{% block meta %}<meta name="description" content="Request a free quote for web development, Python projects, design or content creation from {{ profile.name }}.">{% endblock %}
+{% block content %}
+<section class="section-inner page-section">
+  <p class="eyebrow center">Hire me</p>
+  <h2 class="center">Request a quote</h2>
+  <p class="section-sub center">Tell me what you need, your budget and when you need it. I will reply with a plan and price.</p>
+
+  <div class="form-card">
+    <form class="modern-contact-form gold-form" method="post" action="{% url 'quote_submit' %}" data-ajax
+          data-success="✓ Thank you! Your request has been sent. I will reply by email soon." novalidate>
+      {% csrf_token %}
+      {% include "partials/honeypot.html" %}
+      <div class="modern-form-row">
+        <div class="modern-input-group"><label for="qName">Your name</label><input id="qName" name="name" type="text" placeholder="John Doe" required></div>
+        <div class="modern-input-group"><label for="qEmail">Email address</label><input id="qEmail" name="email" type="email" placeholder="you@example.com" required></div>
+      </div>
+      <div class="modern-form-row">
+        <div class="modern-input-group">
+          <label for="qService">Service</label>
+          <select id="qService" name="service">
+            {% for s in services %}<option value="{{ s.title }}" {% if s.title == preselect %}selected{% endif %}>{{ s.title }}</option>{% endfor %}
+            <option value="Other" {% if preselect == "Other" %}selected{% endif %}>Other / not sure</option>
+          </select>
+        </div>
+        <div class="modern-input-group">
+          <label for="qBudget">Budget</label>
+          <select id="qBudget" name="budget">{% for value, label in budgets %}<option value="{{ value }}" {% if value == "not-sure" %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+        </div>
+      </div>
+      <div class="modern-input-group"><label for="qDeadline">Deadline (optional)</label><input id="qDeadline" name="deadline" type="date" min="{% now 'Y-m-d' %}"></div>
+      <div class="modern-input-group"><label for="qDetails">Project details</label><textarea id="qDetails" name="details" rows="6" placeholder="What do you want to build? Any examples, features or links?" required></textarea></div>
+      {% include "partials/turnstile.html" %}
+      <button type="submit" class="btn btn-solid full"><span class="btn-label">Send request</span></button>
+      <p class="form-msg" role="status"></p>
+    </form>
+  </div>
+</section>
+{% endblock %}
