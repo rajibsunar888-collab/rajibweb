@@ -1,4 +1,3 @@
-
 """
 Django settings for Rajib Sunar's portfolio.
 
@@ -21,9 +20,23 @@ def env_bool(name, default=False):
 
 # ---------------------------------------------------------------- core
 SECRET_KEY = env("DJANGO_SECRET_KEY", "dev-only-insecure-key-change-me")
-DEBUG = env_bool("DJANGO_DEBUG", True)
-ALLOWED_HOSTS = [h.strip() for h in env("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,.vercel.app").split(",") if h.strip()]
-CSRF_TRUSTED_ORIGINS = [o.strip() for o in env("DJANGO_CSRF_TRUSTED_ORIGINS", "https://*.vercel.app").split(",") if o.strip()]
+DEBUG = env_bool("DJANGO_DEBUG", False)
+ALLOWED_HOSTS = [
+    h.strip()
+    for h in env(
+        "DJANGO_ALLOWED_HOSTS",
+        "localhost,127.0.0.1,rajibsunar.com.np,www.rajibsunar.com.np,.onrender.com,.vercel.app",
+    ).split(",")
+    if h.strip()
+]
+CSRF_TRUSTED_ORIGINS = [
+    o.strip()
+    for o in env(
+        "DJANGO_CSRF_TRUSTED_ORIGINS",
+        "https://rajibsunar.com.np,https://www.rajibsunar.com.np,https://*.onrender.com,https://*.vercel.app",
+    ).split(",")
+    if o.strip()
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
